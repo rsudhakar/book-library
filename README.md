@@ -1,24 +1,8 @@
-# README
+# TODO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* User can lend only a maximum of 2 books
+* User can keep the book without penalty for 20 days
+* Late charges is calculated as follows:
+** 10/- per week (even one day extra in calculated as one week)
+** Add 100/- if 30 days late (in addition to weekly charges)
+* If a user lost 4 books, deactivate his account
