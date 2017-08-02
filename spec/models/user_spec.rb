@@ -18,4 +18,22 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'lending_cap' do
+    context 'user has been registered for more than 6 months' do
+      it 'should return cap for long timers' do
+        user.update(created_at: 7.months.ago)
+        user.reload
+        expect(user.lending_cap).to eq(User::LONG_TIMER_LENDING_CAP)
+      end
+    end
+
+    context 'user has been registered in the last 6 months' do
+      it 'should return default cap' do
+        user.update(created_at: 1.month.ago)
+        user.reload
+        expect(user.lending_cap).to eq(User::DEFAULT_LENDING_CAP)
+      end
+    end
+  end
 end
