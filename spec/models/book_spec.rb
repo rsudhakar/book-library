@@ -16,6 +16,7 @@ RSpec.describe Book, type: :model do
     context 'book is available' do
       context 'user has quota' do
         it 'should lend the book' do
+          allow(user).to receive(:can_lend?).and_return(true)
           available_book.lend(user)
           available_book.reload
           expect(available_book.user_id).to eq(user.id)
@@ -24,7 +25,7 @@ RSpec.describe Book, type: :model do
 
       context 'user does not have quota' do 
         it 'should not lend the book' do
-          create_list(:book, 2, user: user)
+          allow(user).to receive(:can_lend?).and_return(false)
           available_book.lend(user)
           available_book.reload
           expect(available_book.user_id).to_not eq(user.id)
