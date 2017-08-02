@@ -1,25 +1,22 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
-<<<<<<< HEAD
-  it "should return true if lending count is <= 10 in a month" do
-    user = create(:user)
-    create_list(:books_users_history,9,user: user, lending_date: Date.today)
-    expect(user.can_lend?).to be true
-  end
-
-  it "should return false if lending count is > 10 in a month" do
-    user = create(:user)
-    create_list(:books_users_history,10,user: user, lending_date: Date.today)
-    expect(user.can_lend?).to be false
-  end
-||||||| merged common ancestors
-=======
-
   let(:user) { create :user }
 	let(:non_penalised_book) {FactoryGirl.create(:book, user: user, lend_date: Date.today)}
 	let(:penalised_book) {FactoryGirl.create(:book, user: user, lend_date: Date.today - 21.days)}
 	let(:book_not_of_user) {FactoryGirl.create(:book, lend_date: Date.today)}
 
+  it "should return true if lending count is <= 10 in a month" do
+    user = create(:user)
+    create_list(:books_users_history,9,user: user, lending_date: Date.today)
+    expect(user.can_lend_this_month?).to be true
+  end
+
+  it "should return false if lending count is > 10 in a month" do
+    user = create(:user)
+    create_list(:books_users_history,10,user: user, lending_date: Date.today)
+    expect(user.can_lend_this_month?).to be false
+  end
+  
 	describe "User can keep the book without penalty for 20 days" do
 		it "User should return the book within 20 days" do
 			expect(user.has_penalty?(non_penalised_book)).to be false
@@ -67,5 +64,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
->>>>>>> 4fcd0ed62ac8aad8cbb11106a777c8ec04b50bbf
 end

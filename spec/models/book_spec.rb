@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-require 'rails_helper'
-
-RSpec.describe Book, type: :model do
-end
-||||||| merged common ancestors
-=======
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
@@ -41,4 +34,3 @@ RSpec.describe Book, type: :model do
     end
   end
 end
->>>>>>> 4fcd0ed62ac8aad8cbb11106a777c8ec04b50bbf
